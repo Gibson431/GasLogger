@@ -15,4 +15,4 @@ async function getPrices() {
 }
 
 connect()
-setInterval(() => { getPrices() }, 5000)
+setInterval(() => { getPrices() }, 10000)
