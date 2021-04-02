@@ -41,8 +41,8 @@ module.exports.log = async function (timestamp, { status, result }) {
     }, {
         upsert: true
     },
-        function (err, doc) {
-            if (err || !doc) {
+        function (err) {
+            if (err) {
                 console.log(err);
             }
         })
