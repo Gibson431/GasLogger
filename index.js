@@ -11,7 +11,7 @@ async function getPrices() {
     let timestamp = new Date()
     let { data } = await axios.get(`https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=${process.env.API_KEY}`)
     mongo.log(timestamp, data)
-    console.log(`Safe: ${data.SafeGasPrice}, Recommended: ${data.ProposeGasPrice}, Fast: ${data.FastGasPrice}`);
+    console.log(`Safe: ${data.result.SafeGasPrice}, Recommended: ${data.result.ProposeGasPrice}, Fast: ${data.result.FastGasPrice}`);
 }
 
 connect()
