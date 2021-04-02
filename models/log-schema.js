@@ -11,7 +11,7 @@ const reqNum = {
 }
 
 const logSchema = new mongoose.Schema({
-    _id: reqNum,        // Year
+    _id: reqNum,        // Epoch
     year: reqString,
     month: reqString,
     day: reqString,
