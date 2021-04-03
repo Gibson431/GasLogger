@@ -14,7 +14,8 @@ const logSchema = new mongoose.Schema({
     _id: reqNum,        // Epoch
     year: reqString,
     month: reqString,
-    day: reqString,
+    date: reqString,    // 1-31
+    day: reqNum,        // 0-6
     hour: reqString,
     minute: reqString,
     second: reqString,

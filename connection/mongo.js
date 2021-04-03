@@ -17,12 +17,13 @@ module.exports.log = async function (timestamp, { status, result }) {
     if (status == '0') { return }
 
     let { LastBlock, SafeGasPrice, ProposeGasPrice, FastGasPrice } = result
-    year = timestamp.getFullYear()
-    month = `${year}-${timestamp.getMonth()}`
-    day = `${month}-${timestamp.getDay()}`
-    hour = `${day}-${timestamp.getHours()}`
-    minute = `${hour}-${timestamp.getMinutes()}`
-    second = `${minute}-${timestamp.getSeconds()}`
+    let year = timestamp.getFullYear()
+    let month = `${year}-${timestamp.getMonth()}`
+    let date = `${month}-${timestamp.getDate()}`
+    let day = `${timestamp.getDay()}`
+    let hour = `${day}-${timestamp.getHours()}`
+    let minute = `${hour}-${timestamp.getMinutes()}`
+    let second = `${minute}-${timestamp.getSeconds()}`
 
     await logSchema.findOneAndUpdate({
         _id: timestamp.getTime()
@@ -30,7 +31,7 @@ module.exports.log = async function (timestamp, { status, result }) {
         _id: timestamp.getTime(),
         year,
         month,
-        day,
+        date,
         hour,
         minute,
         second,
