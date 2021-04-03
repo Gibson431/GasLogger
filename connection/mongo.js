@@ -3,11 +3,13 @@ const logSchema = require('../models/log-schema')
 const mongoPath = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.nq6wl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
 
 module.exports = async function () {
+    let err = null
     await mongoose.connect(mongoPath, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
-    })
-    return mongoose
+    }).catch(e => { err = e })
+    return err ? null : mongoose
+
 }
 
 module.exports.log = async function (timestamp, { status, result }) {
@@ -48,4 +50,4 @@ module.exports.log = async function (timestamp, { status, result }) {
         })
 }
 
-module.exports.getAll = async function () { return null}
+module.exports.getAll = async function () { return null }

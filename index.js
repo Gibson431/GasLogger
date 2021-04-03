@@ -1,10 +1,14 @@
 try { require("dotenv").config() } catch (err) { console.log(err); }
 const axios = require('axios')
 const mongo = require('./connection/mongo')
-var connection = null
 
 async function connect() {
-    connection = await mongo()
+    let connection = await mongo()
+    if (!connection) {
+        console.log(`DB Failed to connect.`);
+        process.exit()
+    }
+    console.log(`DB Connected.`);
 }
 
 async function getPrices() {
