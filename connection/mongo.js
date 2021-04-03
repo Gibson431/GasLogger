@@ -43,9 +43,10 @@ module.exports.log = async function (timestamp, { status, result }) {
     }, {
         upsert: true
     },
-        function (err) {
+        (err) => {
             if (err) {
-                console.log(err);
+                console.log(err)
+                process.exit()
             }
         })
 }
