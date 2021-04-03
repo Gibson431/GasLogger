@@ -21,7 +21,7 @@ module.exports.log = async function (timestamp, { status, result }) {
     let month = `${year}-${timestamp.getMonth()}`
     let date = `${month}-${timestamp.getDate()}`
     let day = `${timestamp.getDay()}`
-    let hour = `${day}-${timestamp.getHours()}`
+    let hour = `${date}-${timestamp.getHours()}`
     let minute = `${hour}-${timestamp.getMinutes()}`
     let second = `${minute}-${timestamp.getSeconds()}`
 
@@ -32,6 +32,7 @@ module.exports.log = async function (timestamp, { status, result }) {
         year,
         month,
         date,
+        day,
         hour,
         minute,
         second,
