@@ -19,7 +19,7 @@ async function getPrices() {
 }
 
 process.on('unhandledRejection', async (except) => {
-    console.log(except);
+    console.log(except.message);
     content = {"value1": except.message}
     await axios.post('https://maker.ifttt.com/trigger/GasLog_Error/with/key/dLf1E9sIjcO-jo8JZGh7I-ZAMBUr8F8eiYcQ1RmOiyL', content)
     await process.exit()
