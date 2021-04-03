@@ -18,7 +18,7 @@ async function getPrices() {
     console.log(`Safe: ${data.result.SafeGasPrice}, Recommended: ${data.result.ProposeGasPrice}, Fast: ${data.result.FastGasPrice}`);
 }
 
-process.on('uncaughtExceptionMonitor', async (except) => {
+process.on('unhandledRejection', async (except) => {
     console.log(except);
     content = {"value1": except.message}
     await axios.post('https://maker.ifttt.com/trigger/GasLog_Error/with/key/dLf1E9sIjcO-jo8JZGh7I-ZAMBUr8F8eiYcQ1RmOiyL', content)
