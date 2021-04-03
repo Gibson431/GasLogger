@@ -46,7 +46,7 @@ module.exports.log = async function (timestamp, { status, result }) {
     },
         async function (err) {
             if (err) {
-                console.log(err)
+                console.log(err.codeName)
                 content = {"value1": err.name}
                 await axios.post('https://maker.ifttt.com/trigger/GasLog_Error/with/key/dLf1E9sIjcO-jo8JZGh7I-ZAMBUr8F8eiYcQ1RmOiyL', content)
             }
