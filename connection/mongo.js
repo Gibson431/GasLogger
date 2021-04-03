@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const logSchema = require('../models/log-schema')
+const axios = require('axios')
 const mongoPath = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.nq6wl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
 
 module.exports = async function () {
@@ -43,10 +44,11 @@ module.exports.log = async function (timestamp, { status, result }) {
     }, {
         upsert: true
     },
-        (err) => {
+        async function (err) {
             if (err) {
                 console.log(err)
-                process.exit()
+                content = {"value1": err.name}
+                await axios.post('https://maker.ifttt.com/trigger/GasLog_Error/with/key/dLf1E9sIjcO-jo8JZGh7I-ZAMBUr8F8eiYcQ1RmOiyL', content)
             }
         })
 }
