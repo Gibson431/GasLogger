@@ -26,5 +26,9 @@ process.on('unhandledRejection', async (except) => {
     await process.exit()
 })
 
-connect()
-setInterval(() => { getPrices() }, 60000)
+async function setup() {
+    await connect()
+    setInterval(() => { getPrices() }, 60000)
+}
+
+setup()
