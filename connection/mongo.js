@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const logSchema = require('../models/log-schema')
 const axios = require('axios')
 const mongoPath = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.nq6wl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
+let date = new Date()
 
 module.exports = async function () {
     let err = null
@@ -56,4 +57,7 @@ module.exports.log = async function (timestamp, { status, result }) {
         })
 }
 
-module.exports.getAll = async function () { return null }
+module.exports.get = async function (action = 'date', index = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`) { 
+    let res = await logSchema.find(JSON.parse(`{"${action}":"${index}"}`))
+    return res
+}
