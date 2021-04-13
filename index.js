@@ -41,4 +41,4 @@ async function daysBestTime() {
 }
 
 setup()
-daysBestTime()
+// daysBestTime()
