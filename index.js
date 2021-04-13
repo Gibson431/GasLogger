@@ -31,4 +31,14 @@ async function setup() {
     setInterval(() => { getPrices() }, 60000)
 }
 
+async function daysBestTime() {
+    let d = new Date()
+    let filter = { "day": d.getDay() }
+    collection = await mongo.getObj(filter)
+    let hours = new Array(24).fill(Array(1).fill(0))
+    console.log(hours);
+    // TODO compute averages per hour or minute
+}
+
 setup()
+daysBestTime()

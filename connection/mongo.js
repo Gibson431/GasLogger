@@ -19,12 +19,12 @@ module.exports.log = async function (timestamp, { status, result }) {
 
     let { LastBlock, SafeGasPrice, ProposeGasPrice, FastGasPrice } = result
     let year = timestamp.getFullYear()
-    let month = `${year}-${timestamp.getMonth()}`
-    let date = `${month}-${timestamp.getDate()}`
-    let day = `${timestamp.getDay()}`
-    let hour = `${date}-${timestamp.getHours()}`
-    let minute = `${hour}-${timestamp.getMinutes()}`
-    let second = `${minute}-${timestamp.getSeconds()}`
+    let month = timestamp.getMonth()
+    let date = timestamp.getDate()
+    let day = timestamp.getDay()
+    let hour = timestamp.getHours()
+    let minute = timestamp.getMinutes()
+    let second = timestamp.getSeconds()
 
     await logSchema.findOneAndUpdate({
         _id: timestamp.getTime()
@@ -37,13 +37,11 @@ module.exports.log = async function (timestamp, { status, result }) {
         hour,
         minute,
         second,
-        prices: [
-            {
+        prices: {
                 SafeGasPrice,
                 ProposeGasPrice,
                 FastGasPrice
             }
-        ]
     }, {
         upsert: true
     },
@@ -58,6 +56,12 @@ module.exports.log = async function (timestamp, { status, result }) {
 }
 
 module.exports.get = async function (action = 'date', index = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`) { 
-    let res = await logSchema.find(JSON.parse(`{"${action}":"${index}"}`))
+    let obj={}
+    obj[action]=index
+    let res = await logSchema.find(obj)
+    return res
+}
+module.exports.getObj = async function (filter = {"date": `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`}) {
+    let res = await logSchema.find(filter)
     return res
 }

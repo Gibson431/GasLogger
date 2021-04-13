@@ -12,20 +12,18 @@ const reqNum = {
 
 const logSchema = new mongoose.Schema({
     _id: reqNum,        // Epoch
-    year: reqString,
-    month: reqString,
-    date: reqString,    // 1-31
+    year: reqNum,
+    month: reqNum,
+    date: reqNum,    // 1-31
     day: reqNum,        // 0-6
-    hour: reqString,
-    minute: reqString,
-    second: reqString,
-    prices: [
-        {
+    hour: reqNum,
+    minute: reqNum,
+    second: reqNum,
+    prices: {
             SafeGasPrice: reqNum,
             ProposeGasPrice: reqNum,
             FastGasPrice: reqNum
         }
-    ]
 })
 
 module.exports = mongoose.model('log-schemas', logSchema)
